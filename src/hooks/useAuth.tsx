@@ -33,7 +33,7 @@ interface AuthContextType {
     class_name?: string;
     college_name?: string;
     role?: string;
-  }, opts?: { redirectTo?: string }) => Promise<{ error?: string }>;
+  }) => Promise<{ error?: string }>;
   logout: () => Promise<void>;
   updateProfile: (data: Partial<UserProfile>) => Promise<{ error?: string }>;
   isLoading: boolean;
@@ -141,16 +141,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     class_name?: string;
     college_name?: string;
     role?: string;
-  }, opts?: { redirectTo?: string }) => {
+  }) => {
     setIsLoading(true);
     try {
-      const redirectUrl = opts?.redirectTo ?? `${window.location.origin}/`;
-      
       const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          emailRedirectTo: redirectUrl,
           data: {
             full_name: profileData.full_name,
             age: profileData.age,

@@ -8,8 +8,7 @@ interface Enrollment {
   user_id: string;
   module_id: string;
   completed: boolean;
-  created_at: string;
-  updated_at: string;
+  enrolled_at: string;
   completed_at?: string;
 }
 

@@ -95,8 +95,7 @@ const AdminAuth = () => {
           full_name: signupForm.collegeName,
           college_name: signupForm.collegeName,
           role: 'admin'
-        },
-        { redirectTo: `${window.location.origin}/admin/dashboard` }
+        }
       );
       
       if (error) {
@@ -110,7 +109,7 @@ const AdminAuth = () => {
 
       toast({
         title: "Admin Account Created",
-        description: "Your admin account has been created successfully. Please check your email to verify your account.",
+        description: "Your admin account has been created successfully. You can now sign in.",
       });
       
     } catch (error) {

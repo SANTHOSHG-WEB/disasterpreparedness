@@ -27,8 +27,7 @@ interface Enrollment {
   user_id: string;
   module_id: string;
   completed: boolean;
-  created_at: string;
-  updated_at: string;
+  enrolled_at: string;
   completed_at?: string;
 }
 
@@ -307,7 +306,7 @@ const AdminDashboard = () => {
                         </h3>
                         <p className="text-sm text-muted-foreground">Module: {enrollment.module_id}</p>
                         <p className="text-xs text-muted-foreground">
-                          Enrolled: {new Date(enrollment.created_at).toLocaleDateString()}
+                          Enrolled: {new Date(enrollment.enrolled_at).toLocaleDateString()}
                         </p>
                       </div>
                       <div className="text-right">
