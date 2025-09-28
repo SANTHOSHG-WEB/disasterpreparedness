@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Disaster Management Platform Design System - Glassmorphism + Neumorphism */
+
+@layer base {
+  :root {
+    /* Normal blue theme for mobile app */
+    --background: 210 30% 8%;
+    --foreground: 210 40% 98%;
+
+    /* Clean mobile cards */
+    --glass: 210 40% 12%;
+    --glass-border: 210 50% 25%;
+    --glass-foreground: 210 40% 98%;
+
+    /* Standard blue primary */
+    --primary: 214 100% 59%;
+    --primary-dark: 214 100% 49%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Secondary glass blue */
+    --secondary: 220 50% 15%;
+    --secondary-foreground: 210 40% 95%;
+
+    /* Emergency red for SOS */
+    --emergency: 0 84% 60%;
+    --emergency-foreground: 210 40% 98%;
+
+    /* Success green */
+    --success: 120 60% 50%;
+    --success-foreground: 210 40% 98%;
+
+    /* Warning amber */
+    --warning: 45 100% 60%;
+    --warning-foreground: 220 100% 10%;
+
+    /* Muted glass */
+    --muted: 220 30% 20%;
+    --muted-foreground: 215 20% 70%;
+
+    /* Accent glass */
+    --accent: 200 100% 50%;
+    --accent-foreground: 210 40% 98%;
+
+    /* Borders */
+    --border: 220 50% 25%;
+    --input: 220 50% 15%;
+    --ring: 220 100% 50%;
+
+    /* Neumorphism shadows */
+    --shadow-light: 220 100% 15%;
+    --shadow-dark: 220 100% 5%;
+
+    --radius: 1rem;
+
+    /* Mobile-friendly gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(214 100% 59%), hsl(220 100% 65%));
+    --gradient-glass: linear-gradient(135deg, hsl(210 40% 12% / 0.8), hsl(210 40% 15% / 0.6));
+    --gradient-emergency: linear-gradient(135deg, hsl(0 84% 60%), hsl(15 84% 55%));
+    --gradient-success: linear-gradient(135deg, hsl(120 60% 50%), hsl(140 60% 45%));
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(135deg, hsl(210 30% 8%), hsl(214 30% 12%));
+    min-height: 100vh;
+  }
+
+  /* Glassmorphism utility classes */
+  .glass {
+    background: hsl(var(--glass) / 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border) / 0.3);
+    box-shadow: 
+      0 8px 32px hsl(var(--shadow-dark) / 0.3),
+      inset 0 1px 0 hsl(var(--glass-border) / 0.2);
+  }
+
+  /* Neumorphism utility classes */
+  .neumorphic {
+    background: hsl(var(--glass));
+    box-shadow: 
+      8px 8px 16px hsl(var(--shadow-dark) / 0.4),
+      -8px -8px 16px hsl(var(--shadow-light) / 0.1),
+      inset 0 0 0 1px hsl(var(--glass-border) / 0.2);
+  }
+
+  .neumorphic-inset {
+    background: hsl(var(--glass));
+    box-shadow: 
+      inset 4px 4px 8px hsl(var(--shadow-dark) / 0.3),
+      inset -4px -4px 8px hsl(var(--shadow-light) / 0.1);
+  }
+
+  /* Interactive states */
+  .glass-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .glass-hover:hover {
+    background: hsl(var(--glass) / 0.8);
+    transform: translateY(-2px);
+    box-shadow: 
+      0 12px 40px hsl(var(--shadow-dark) / 0.4),
+      inset 0 1px 0 hsl(var(--glass-border) / 0.3);
+  }
+
+  /* Blinking animation for SOS */
+  .blink {
+    animation: blink 1.5s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.6; }
+  }
+
+  /* Smooth animations */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+
+  /* Progress bars */
+  .progress-glow {
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  }
+
+  /* PWA optimizations */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Disaster Management Education Platform",
+  "short_name": "DisasterEdu",
+  "description": "Mobile disaster preparedness education for Indian schools",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a202c",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/placeholder.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/placeholder.svg", 
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["education", "safety", "emergency"],
+  "lang": "en-IN",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Emergency Contacts",
+      "short_name": "SOS",
+      "description": "Quick access to emergency contacts",
+      "url": "/emergency-contacts",
+      "icons": [{ "src": "/placeholder.svg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Weather Alerts",
+      "short_name": "Weather",
+      "description": "Check weather alerts and warnings",
+      "url": "/weather", 
+      "icons": [{ "src": "/placeholder.svg", "sizes": "96x96" }]
+    }
+  ]
+}
