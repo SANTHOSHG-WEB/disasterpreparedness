@@ -197,7 +197,7 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-gray-50 p-4 pt-24">
       <div className="container mx-auto max-w-md">
         {/* Language Switcher */}
-        <div className="fixed top-4 right-4 z-50">
+        <div className="fixed top-4 right-4 z-[60]">
           <LanguageSwitcher />
         </div>
         

@@ -19,25 +19,35 @@ export const LanguageSwitcher: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-2">
-          <Languages className="h-4 w-4" />
-          <span className="hidden sm:inline">
+        <Button 
+          variant="outline" 
+          size="sm" 
+          className="gap-2 min-w-0 flex-shrink-0 glass border-glass-border"
+        >
+          <Languages className="h-4 w-4 flex-shrink-0" />
+          <span className="hidden sm:inline truncate">
             {currentLanguage?.flag} {currentLanguage?.name}
           </span>
-          <span className="sm:hidden">
+          <span className="sm:hidden text-lg">
             {currentLanguage?.flag}
           </span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent 
+        align="end" 
+        className="z-[100] bg-background border-border shadow-lg min-w-[140px]"
+        sideOffset={8}
+      >
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
             onClick={() => setLanguage(lang.code)}
-            className={`gap-2 ${language === lang.code ? 'bg-accent' : ''}`}
+            className={`gap-2 cursor-pointer hover:bg-accent hover:text-accent-foreground ${
+              language === lang.code ? 'bg-accent text-accent-foreground' : ''
+            }`}
           >
-            <span>{lang.flag}</span>
-            <span>{lang.name}</span>
+            <span className="text-lg">{lang.flag}</span>
+            <span className="font-medium">{lang.name}</span>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

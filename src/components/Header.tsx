@@ -65,14 +65,19 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* Language Switcher and Mobile Menu */}
-            <div className="flex items-center gap-2">
+            {/* Desktop Language Switcher */}
+            <div className="hidden md:block">
+              <LanguageSwitcher />
+            </div>
+
+            {/* Mobile Controls */}
+            <div className="flex items-center gap-2 md:hidden">
               <LanguageSwitcher />
               
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden glass-hover p-2 rounded-lg touch-target"
+                className="glass-hover p-2 rounded-lg touch-target"
                 aria-label="Toggle navigation menu"
               >
                 {isMenuOpen ? (
