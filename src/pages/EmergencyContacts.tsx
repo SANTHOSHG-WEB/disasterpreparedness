@@ -5,6 +5,7 @@ import { Badge } from '../components/ui/badge';
 import { Input } from '../components/ui/input';
 import { Phone, MapPin, Search, Shield, Heart, Users, Download } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface EmergencyContact {
   id: string;
@@ -22,6 +23,7 @@ const EmergencyContacts = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useLanguage();
 
   useEffect(() => {
     fetchContacts();
@@ -136,7 +138,7 @@ const EmergencyContacts = () => {
       <div className="container mx-auto max-w-4xl">
         <div className="mb-8 text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-glass-foreground mb-4">
-            Emergency Contacts
+            {t('emergency.title')}
           </h1>
           <p className="text-lg text-muted-foreground mb-4">
             Quick access to essential emergency services across India

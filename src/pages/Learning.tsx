@@ -8,11 +8,13 @@ import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { Progress } from '../components/ui/progress';
 import { Lock, CheckCircle, Play, Star, Award, BookOpen, Users, Clock, Video, Download } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Learning = () => {
   const navigate = useNavigate();
   const { user, profile } = useAuth();
   const { progress, canAccessModule, getModuleProgress, getCompletedModulesCount } = useProgress();
+  const { t } = useLanguage();
 
   const handleEnrollClick = () => {
     if (!user) {
@@ -92,7 +94,7 @@ const Learning = () => {
               <CardHeader>
                 <CardTitle className="flex items-center justify-center gap-2 text-glass-foreground">
                   <BookOpen className="h-6 w-6" />
-                  Your Progress
+                  {t('learning.progress')}
                 </CardTitle>
               </CardHeader>
             <CardContent className="space-y-6">
@@ -140,10 +142,10 @@ const Learning = () => {
         {/* Modules Grid */}
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-glass-foreground">Course Modules</h2>
+            <h2 className="text-2xl font-bold text-glass-foreground">{t('learning.modules')}</h2>
             {!user && (
               <Button onClick={handleEnrollClick} variant="outline" className="glass border-glass-border">
-                Login to Start
+                {t('login')}
               </Button>
             )}
           </div>

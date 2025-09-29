@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { useLanguage } from '../contexts/LanguageContext';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
 
   const navItems = [
-    { path: '/', label: 'Home' },
-    { path: '/admin', label: 'Admin Dashboard' },
-    { path: '/learning', label: 'Learning' },
-    { path: '/map', label: 'Map' },
-    { path: '/emergency-contacts', label: 'Emergency Contacts' },
-    { path: '/weather', label: 'Weather' },
-    { path: '/about', label: 'About' },
+    { path: '/', label: t('dashboard') },
+    { path: '/admin', label: t('admin.dashboard') },
+    { path: '/learning', label: t('learning') },
+    { path: '/map', label: t('map') },
+    { path: '/emergency-contacts', label: t('emergency') },
+    { path: '/weather', label: t('weather') },
+    { path: '/about', label: t('about') },
   ];
 
   const handleSOSClick = () => {
@@ -62,18 +65,23 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden glass-hover p-2 rounded-lg touch-target ml-auto"
-              aria-label="Toggle navigation menu"
-            >
-              {isMenuOpen ? (
-                <X className="h-6 w-6 text-glass-foreground" />
-              ) : (
-                <Menu className="h-6 w-6 text-glass-foreground" />
-              )}
-            </button>
+            {/* Language Switcher and Mobile Menu */}
+            <div className="flex items-center gap-2">
+              <LanguageSwitcher />
+              
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="md:hidden glass-hover p-2 rounded-lg touch-target"
+                aria-label="Toggle navigation menu"
+              >
+                {isMenuOpen ? (
+                  <X className="h-6 w-6 text-glass-foreground" />
+                ) : (
+                  <Menu className="h-6 w-6 text-glass-foreground" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>

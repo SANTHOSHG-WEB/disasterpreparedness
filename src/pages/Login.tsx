@@ -11,6 +11,7 @@ import { Calendar } from '../components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '../components/ui/popover';
 import { CalendarIcon } from 'lucide-react';
 import { format } from 'date-fns';
+import { useLanguage } from '../contexts/LanguageContext';
 
 
 const Login = () => {
@@ -18,6 +19,7 @@ const Login = () => {
   const location = useLocation();
   const { login, signup, isLoading } = useAuth();
   const { toast } = useToast();
+  const { t } = useLanguage();
 
 
   const [loginForm, setLoginForm] = useState({
@@ -108,7 +110,7 @@ const Login = () => {
         <Card className="glass border-glass-border">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl text-glass-foreground">
-              Welcome Back
+              {t('auth.login')}
             </CardTitle>
             <CardDescription className="text-muted-foreground">
               Sign in to your account or create a new one
@@ -117,14 +119,14 @@ const Login = () => {
           <CardContent>
             <Tabs defaultValue="login" className="w-full">
               <TabsList className="grid w-full grid-cols-2 glass">
-                <TabsTrigger value="login">Sign In</TabsTrigger>
-                <TabsTrigger value="signup">Sign Up</TabsTrigger>
+                <TabsTrigger value="login">{t('auth.login')}</TabsTrigger>
+                <TabsTrigger value="signup">{t('auth.signup')}</TabsTrigger>
               </TabsList>
 
               <TabsContent value="login" className="space-y-4">
                 <form onSubmit={handleLogin} className="space-y-4">
                   <div>
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email">{t('auth.email')}</Label>
                     <Input
                       id="email"
                       type="email"
@@ -135,7 +137,7 @@ const Login = () => {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password">{t('auth.password')}</Label>
                     <Input
                       id="password"
                       type="password"
@@ -150,7 +152,7 @@ const Login = () => {
                     className="w-full bg-primary hover:bg-primary-dark"
                     disabled={isLoading}
                   >
-                    {isLoading ? 'Signing In...' : 'Sign In'}
+                    {isLoading ? `${t('loading')}...` : t('auth.login')}
                   </Button>
                 </form>
               </TabsContent>
@@ -264,7 +266,7 @@ const Login = () => {
                     className="w-full bg-primary hover:bg-primary-dark"
                     disabled={isLoading}
                   >
-                    {isLoading ? 'Creating Account...' : 'Create Account'}
+                    {isLoading ? `${t('loading')}...` : t('auth.signup')}
                   </Button>
                 </form>
               </TabsContent>

@@ -10,6 +10,8 @@ import { useToast } from '../hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { Users, Award, BookOpen, Phone, MapPin, BarChart3 } from 'lucide-react';
 import { Navigate } from 'react-router-dom';
+import { useLanguage } from '../contexts/LanguageContext';
+import { LanguageSwitcher } from '../components/LanguageSwitcher';
 
 interface StudentProfile {
   id: string;
@@ -44,6 +46,7 @@ interface EmergencyContact {
 const AdminDashboard = () => {
   const { user, userRole, isLoading } = useAuth();
   const { toast } = useToast();
+  const { t } = useLanguage();
   
   const [students, setStudents] = useState<StudentProfile[]>([]);
   const [enrollments, setEnrollments] = useState<Enrollment[]>([]);
@@ -180,7 +183,7 @@ const AdminDashboard = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-glass-foreground">Loading dashboard...</p>
+          <p className="text-glass-foreground">{t('admin.dashboard.loading')}</p>
         </div>
       </div>
     );
@@ -193,16 +196,18 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-4 pt-24">
       <div className="container mx-auto max-w-md">
+        {/* Language Switcher */}
+        <div className="fixed top-4 right-4 z-50">
+          <LanguageSwitcher />
+        </div>
+        
         {/* Institute Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-1">
-            Admin
+          <h1 className="text-4xl font-bold text-blue-600 mb-4">
+            {t('admin.dashboard')}
           </h1>
-          <h2 className="text-4xl font-bold text-blue-600 mb-4">
-            Dashboard
-          </h2>
           <p className="text-sm text-gray-600">
-            Safety Institute Management System
+            {t('admin.institute')}
           </p>
         </div>
 
@@ -211,7 +216,7 @@ const AdminDashboard = () => {
           <Card className="bg-white shadow-sm border border-gray-200 rounded-2xl">
             <CardContent className="p-8 text-center">
               <h3 className="text-xl font-medium text-blue-500 mb-4">
-                Active Students
+                {t('admin.active.students')}
               </h3>
               <p className="text-5xl font-bold text-blue-900">
                 {stats.totalStudents.toLocaleString()}
@@ -222,7 +227,7 @@ const AdminDashboard = () => {
           <Card className="bg-white shadow-sm border border-gray-200 rounded-2xl">
             <CardContent className="p-8 text-center">
               <h3 className="text-xl font-medium text-blue-500 mb-4">
-                Completed Modules
+                {t('admin.completed.modules')}
               </h3>
               <p className="text-5xl font-bold text-blue-900">
                 {stats.completedModules.toLocaleString()}
@@ -233,7 +238,7 @@ const AdminDashboard = () => {
           <Card className="bg-white shadow-sm border border-gray-200 rounded-2xl">
             <CardContent className="p-8 text-center">
               <h3 className="text-xl font-medium text-blue-500 mb-4">
-                Badges Earned
+                {t('admin.badges.earned')}
               </h3>
               <p className="text-5xl font-bold text-blue-900">
                 {badgesEarned.toLocaleString()}
@@ -244,7 +249,7 @@ const AdminDashboard = () => {
           <Card className="bg-white shadow-sm border border-gray-200 rounded-2xl">
             <CardContent className="p-8 text-center">
               <h3 className="text-xl font-medium text-blue-500 mb-4">
-                Drill Participation
+                {t('admin.drill.participation')}
               </h3>
               <p className="text-5xl font-bold text-blue-900">
                 {drillParticipation}%
@@ -259,14 +264,14 @@ const AdminDashboard = () => {
             className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl text-lg"
             onClick={() => window.location.href = '#students'}
           >
-            Manage Students
+            {t('admin.manage.students')}
           </Button>
           <Button 
             variant="outline"
             className="w-full border-blue-200 text-blue-600 hover:bg-blue-50 py-4 rounded-xl text-lg"
             onClick={() => window.location.href = '#reports'}
           >
-            View Reports
+            {t('admin.view.reports')}
           </Button>
         </div>
       </div>
