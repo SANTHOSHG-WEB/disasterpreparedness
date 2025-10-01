@@ -71,13 +71,15 @@ const Header = () => {
             </div>
 
             {/* Mobile Controls */}
-            <div className="flex items-center gap-2 md:hidden">
-              <LanguageSwitcher />
+            <div className="flex items-center gap-2 md:hidden w-full justify-end">
+              <div className="z-50">
+                <LanguageSwitcher />
+              </div>
               
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="glass-hover p-2 rounded-lg touch-target"
+                className="glass-hover p-2 rounded-lg touch-target min-w-[44px] h-[44px]"
                 aria-label="Toggle navigation menu"
               >
                 {isMenuOpen ? (

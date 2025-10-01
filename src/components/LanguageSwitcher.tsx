@@ -22,13 +22,13 @@ export const LanguageSwitcher: React.FC = () => {
         <Button 
           variant="outline" 
           size="sm" 
-          className="gap-2 min-w-0 flex-shrink-0 glass border-glass-border"
+          className="gap-1 px-2 sm:px-3 min-w-[44px] h-[44px] sm:h-auto flex-shrink-0 glass border-glass-border touch-target"
         >
           <Languages className="h-4 w-4 flex-shrink-0" />
-          <span className="hidden sm:inline truncate">
+          <span className="hidden sm:inline truncate text-sm">
             {currentLanguage?.flag} {currentLanguage?.name}
           </span>
-          <span className="sm:hidden text-lg">
+          <span className="sm:hidden text-base">
             {currentLanguage?.flag}
           </span>
         </Button>
