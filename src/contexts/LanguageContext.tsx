@@ -6,6 +6,7 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string) => string;
+  translateText: (text: string) => Promise<string>;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -755,12 +756,43 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return translations[language][key] || translations.en[key] || key;
   };
 
+  const translateText = async (text: string): Promise<string> => {
+    if (language === 'en') return text;
+    
+    try {
+      const response = await fetch(
+        'https://lawqqqpvyciokqgbicot.supabase.co/functions/v1/translate',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            texts: [text],
+            targetLanguage: language,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        console.error('Translation failed:', response.status);
+        return text;
+      }
+
+      const data = await response.json();
+      return data.translations[0] || text;
+    } catch (error) {
+      console.error('Translation error:', error);
+      return text;
+    }
+  };
+
   useEffect(() => {
     document.documentElement.lang = language;
   }, [language]);
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t, translateText }}>
       {children}
     </LanguageContext.Provider>
   );
